@@ -59,10 +59,11 @@ def home():
         return redirect(url_for('login'))
 
     path = os.path.expanduser(f"~{username}")
+    size = round(os.path.getsize(path) / (1024 * 1024 * 1024), 7)
 
-    elements, num_dirs, num_txt_files, total_size = get_all_info(path)
+    elements, num_dirs, num_txt_files, _ = get_all_info(path)
 
-    return render_template('home.html', username=username, elements=elements, num_dirs=num_dirs, num_txt_files=num_txt_files, total_size=total_size)
+    return render_template('home.html', username=username, elements=elements, num_dirs=num_dirs, num_txt_files=num_txt_files, total_size=size)
 
 
 @app.route('/<path:path>/')
@@ -99,4 +100,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",debug=True)
+    app.run(host="0.0.0.0",debug=True,port=5001)

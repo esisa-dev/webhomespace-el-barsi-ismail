@@ -5,7 +5,7 @@ def get_all_info(path):
     files = [f for f in os.listdir(path) if not f.startswith('.')]
     num_dirs = sum(os.path.isdir(os.path.join(path, f)) for f in files)
     num_files = sum(not os.path.isdir(os.path.join(path, f)) for f in files)
-    total_size = round(sum(os.path.getsize(os.path.join(path, f)) for f in files) / (1024 * 1024), 0)
+    total_size = round(sum(os.path.getsize(os.path.join(path, f)) for f in files) / (1024 * 1024), 2)
     elements = []
     for file in files:
         isdir = os.path.isdir(os.path.join(path, file))

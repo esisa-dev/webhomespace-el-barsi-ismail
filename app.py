@@ -59,10 +59,11 @@ def home():
         return redirect(url_for('login'))
 
     path = os.path.expanduser(f"~{username}")
+    size = os.path.getsize(path) / (1024 * 1024 * 1024)
+    elements, num_dirs, num_files, _ = get_all_info(path)
 
-    elements, num_dirs, num_files, total_size = get_all_info(path)
+    return render_template('home.html', elements=elements, num_dirs=num_dirs, num_files=num_files, total_size=size, path=path, username=username)
 
-    return render_template('home.html',elements=elements, num_dirs=num_dirs, num_files=num_files, total_size=total_size,path=path)
 
 
 @app.route('/<path:path>/')

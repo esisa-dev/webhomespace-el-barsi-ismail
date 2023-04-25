@@ -23,7 +23,7 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mr-auto flex-wrap">
           <li class="nav-item">
-            <a class="nav-link btn btn-danger mr-5">{{ num_files }}files</a>
+            <a class="nav-link btn btn-danger mr-5">{{ num_files }} files</a>
           </li>
            <li class="nav-item">
             <a class="nav-link btn btn-primary mr-5">{{ num_dirs }} dirs</a>
@@ -60,18 +60,18 @@
               <tr>
                 <td><a href="{{ element[0] }}/">{{ element[0] }}</a></td>
                 <td>{{ element[3]}}</td>
-                <td>{{ element[4]}}</td>
+                <td>{{ element[4]}} MB</td>
               </tr>
               {% else %} {% if element[0].endswith('.txt') %}
               <tr>
                 <td><a href="{{ element[2] }}"><span style="color: red;">{{ element[0] }}</span></a></td>
                 <td>{{ element[3]}}</td>
-                <td>{{ element[4]}}</td>
+                <td>{{ element[4]}} MB</td>
             {% else %}
               <tr>
                 <td><span style="color: rgb(9, 146, 16);">{{ element[0] }}</span></td>
                 <td>{{ element[2]}}</td>
-                <td>{{ element[3]}}</td>
+                <td>{{ element[3]}} MB</td>
               </tr>
               {% endif %} {% endif %} {% endfor %}
         </tbody>

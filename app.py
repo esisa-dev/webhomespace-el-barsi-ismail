@@ -59,11 +59,10 @@ def home():
         return redirect(url_for('login'))
 
     path = os.path.expanduser(f"~{username}")
-    size = os.path.getsize(path) / (1024 * 1024 * 1024)
-    elements, num_dirs, num_files, _ = get_all_info(path)
 
-    return render_template('home.html', elements=elements, num_dirs=num_dirs, num_files=num_files, total_size=size, path=path, username=username)
+    elements, num_dirs, num_txt_files, total_size = get_all_info(path)
 
+    return render_template('home.html', username=username, elements=elements, num_dirs=num_dirs, num_txt_files=num_txt_files, total_size=total_size)
 
 
 @app.route('/<path:path>/')
@@ -71,11 +70,11 @@ def subfolder(path):
     username = session.get('username')
     path = os.path.join(os.path.expanduser(f"~{username}"), path)
     try:
-        elements, num_dirs, num_files, total_size = get_all_info(path)
+        elements, num_dirs, num_txt_files, total_size = get_all_info(path)
     except FileNotFoundError:
         abort(404)
 
-    return render_template('home.html', elements=elements, folder=path, num_dirs=num_dirs, num_files=num_files, total_size=total_size)
+    return render_template('home.html', elements=elements, folder=path, num_dirs=num_dirs, num_txt_files=num_txt_files, total_size=total_size)
 
 
 @app.route('/file/<path:path>/')
